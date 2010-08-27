@@ -24,10 +24,11 @@ public class StringEvaluator implements Evaluator {
     // / </summary>
     public String evaluate(PackerPattern pattern, Matcher matcher, int offset) {
         int length = pattern.getLength();
+        String result = replacement;
         while (length-- > 0) {
             String matchedGroup = matcher.group(offset + length) == null ? "" : matcher.group(offset + length);
-            replacement = replacement.replace("$" + (length + 1), matchedGroup);
+            result = result.replace("$" + (length + 1), matchedGroup);
         }
-        return replacement;
+        return result;
     }
 }
