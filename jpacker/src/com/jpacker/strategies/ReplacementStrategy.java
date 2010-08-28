@@ -23,16 +23,16 @@ import com.jpacker.JPackerPattern;
  */
 public interface ReplacementStrategy {
 
-	/**
-	 * Replacement function. Called once for each match found
-	 * 
-	 * @param patterns
-	 *            A List<JPackerPattern> that contains all
-	 *            {@link JPackerPattern} objects that wrap expressions to be
-	 *            evaluated
-	 * @param matcher
-	 *            A {@link Matcher} object that corresponds to a match in the
-	 *            script
-	 */
-	public String replace(List<JPackerPattern> patterns, Matcher matcher);
+    /**
+     * Replacement function. Called once for each match found
+     *
+     * @param patterns
+     *            A List<JPackerPattern> that contains all
+     *            {@link JPackerPattern} objects that wrap expressions to be
+     *            evaluated
+     * @param matcher
+     *            A {@link Matcher} object that corresponds to a match in the
+     *            script
+     */
+    public String replace(List<JPackerPattern> patterns, Matcher matcher);
 }

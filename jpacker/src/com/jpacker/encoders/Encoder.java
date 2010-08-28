@@ -20,5 +20,4 @@ package com.jpacker.encoders;
 public interface Encoder {
 
     public String encode(int code);
-
 }

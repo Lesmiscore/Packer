@@ -21,44 +21,45 @@ import com.jpacker.evaluators.Evaluator;
  */
 public class JPackerPattern {
 
-	private String		expression;
-	private Evaluator	evaluator;
-	private int			length;
+    private String expression;
+    private Evaluator evaluator;
+    private int length;
 
-	public JPackerPattern() {}
+    public JPackerPattern() {
+    }
 
-	public JPackerPattern(String expression, Evaluator evaluator) {
-		this.expression = expression;
-		this.evaluator = evaluator;
-		evaluator.setJPattern(this);
-	}
+    public JPackerPattern(String expression, Evaluator evaluator) {
+        this.expression = expression;
+        this.evaluator = evaluator;
+        evaluator.setJPattern(this);
+    }
 
-	public String getExpression() {
-		return expression;
-	}
+    public String getExpression() {
+        return expression;
+    }
 
-	public void setExpression(String expression) {
-		this.expression = expression;
-	}
+    public void setExpression(String expression) {
+        this.expression = expression;
+    }
 
-	public int getLength() {
-		return length;
-	}
+    public int getLength() {
+        return length;
+    }
 
-	public void setLength(int length) {
-		this.length = length;
-	}
+    public void setLength(int length) {
+        this.length = length;
+    }
 
-	public Evaluator getEvaluator() {
-		return evaluator;
-	}
+    public Evaluator getEvaluator() {
+        return evaluator;
+    }
 
-	public void setEvaluator(Evaluator evaluator) {
-		this.evaluator = evaluator;
-	}
+    public void setEvaluator(Evaluator evaluator) {
+        this.evaluator = evaluator;
+    }
 
-	@Override
-	public String toString() {
-		return "(" + expression + ")";
-	}
+    @Override
+    public String toString() {
+        return "(" + expression + ")";
+    }
 }

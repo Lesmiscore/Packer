@@ -22,9 +22,8 @@ import java.util.regex.Matcher;
  */
 public class DeleteEvaluator extends AbstractEvaluator implements Evaluator {
 
-	@Override
-	public String evaluate(Matcher matcher, int offset) {
-		return "\u0001" + matcher.group(offset) + "\u0001";
-	}
-
+    @Override
+    public String evaluate(Matcher matcher, int offset) {
+        return "\u0001" + matcher.group(offset) + "\u0001";
+    }
 }

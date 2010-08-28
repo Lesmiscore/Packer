@@ -27,13 +27,13 @@ import com.jpacker.encoders.NumericEncoder;
  */
 public enum JPackerEncoding {
 
-	/**
-	 * No encoding
-	 */
-	NONE(0,"",null),
-	/**
-	 * Base<sub>10</sub> : [0-9]
-	 */
+    /**
+     * No encoding
+     */
+    NONE(0, "", null),
+    /**
+     * Base<sub>10</sub> : [0-9]
+     */
     NUMERIC(10, "String", new NumericEncoder()),
     /**
      * Base<sub>36</sub> : [0-z]
@@ -51,7 +51,6 @@ public enum JPackerEncoding {
      * Base<sub>95</sub> : [¡-ÿ]
      */
     HIGH_ASCII(95, "function(c){return(c<a?\"\":e(c/a))String.fromCharCode(c%a+161)}", new HighAsciiEncoder());
-
     private final int encodingBase;
     private final String encode;
     private Encoder encoder;

@@ -20,16 +20,17 @@ package com.jpacker.encoders;
  */
 public class HighAsciiEncoder implements Encoder {
 
-	private static String	LOOKUP_95	= "¡¢£€¥Š§š©ª«¬­®¯°±²³Žµ¶·ž¹º»ŒœŸ¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ";
+    private static String LOOKUP_95 = "¡¢£€¥Š§š©ª«¬­®¯°±²³Žµ¶·ž¹º»ŒœŸ¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ";
 
-	public String encode(int code) {
-		String encoded = "";
-		int i = 0;
-		do {
-			int digit = (code / (int) Math.pow(95, i)) % 95;
-			encoded = LOOKUP_95.charAt(digit) + encoded;
-			code -= digit * (int) Math.pow(95, i++);
-		} while (code > 0);
-		return encoded;
-	}
+    @Override
+    public String encode(int code) {
+        String encoded = "";
+        int i = 0;
+        do {
+            int digit = (code / (int) Math.pow(95, i)) % 95;
+            encoded = LOOKUP_95.charAt(digit) + encoded;
+            code -= digit * (int) Math.pow(95, i++);
+        } while (code > 0);
+        return encoded;
+    }
 }
