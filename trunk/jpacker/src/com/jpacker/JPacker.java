@@ -74,7 +74,6 @@ public class JPacker {
 
             JPackerExecuter executer;
             if (base == null) {
-                minify = true;
                 executer = new JPackerExecuter(JPackerEncoding.NONE);
             } else {
                 executer = new JPackerExecuter(getEncoding(baseOpt, base));
@@ -103,6 +102,11 @@ public class JPacker {
                         (double) (endTime - startTime) / 1000);
             }
 
+            BufferedReader in2 = new BufferedReader(new FileReader(new File("/home/poly/packer.txt")));
+            Writer out2 = new OutputStreamWriter(new FileOutputStream("/home/poly/packer2.txt"));
+            out2.write(wrapLines(buildStringFromTextFile(in2), columns));
+            out2.close();
+
         } catch (FileNotFoundException e) {
             System.out.println("File not found: " + e.getLocalizedMessage());
             System.exit(1);
@@ -111,6 +115,9 @@ public class JPacker {
             System.exit(1);
         } catch (UnknownOptionException e) {
             printUsage();
+            System.exit(1);
+        } catch (Exception e){
+            System.out.println(e.getLocalizedMessage());
             System.exit(1);
         } finally {
             if (in != null) {
@@ -139,12 +146,11 @@ public class JPacker {
                 + "                                  number.\n"
                 + "  -h, --help                      Displays this information.\n"
                 + "  -m, --minify                    Minify only, do not obfuscate.\n"
-                + "                                  --minify and --base will values will be \n"
-                + "                                  ignored.\n"
+                + "                                  --minify and --base values will be ignored.\n"
                 + "  -o <file>, --output <file>      Place the output into <file>.\n"
                 + "                                  Defaults to stdout.\n"
                 + "  -q, --quiet                     Quiet mode, no message.\n"
-                + "  -s, --shrink-variables          Shrinks variables. Ignored if --minify option \n"
+                + "  -s, --shrink-variables          Shrink variables. Ignored if --minify option \n"
                 + "                                  is set.\n");
     }
 

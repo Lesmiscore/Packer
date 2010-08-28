@@ -68,8 +68,10 @@ public class JPackerExecuter {
         if (!minifyOnly) {
             if (shrinkVariables) {
                 script = shrinkVariables(script);
+            }            
+            if (encoding != JPackerEncoding.NONE) {
+                script = encode(script);
             }
-            script = encode(script);
         }
         return script;
     }
