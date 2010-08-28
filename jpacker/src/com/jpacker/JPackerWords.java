@@ -45,7 +45,7 @@ public final class JPackerWords {
     public JPackerWords(String script, JPackerEncoding encoding) {
         this.encoding = encoding;
         Matcher matcher = WORDS.matcher(script);
-        while (matcher.find()) {
+        while (matcher.find()) {            
             add(new JPackerWord(matcher.group()));
         }
         encode();
@@ -57,6 +57,7 @@ public final class JPackerWords {
         }
         JPackerWord w = find(word);
         w.setCount(w.getCount() + 1);
+        System.out.println(word+ " CNT: "+w.getCount());
     }
 
     private void encode() {
@@ -91,6 +92,8 @@ public final class JPackerWords {
             word.setEncoded(encoding.getEncoder().encode(word.getIndex()));
         }
 
+
+
         // sort by encoding
         Collections.sort(words, new Comparator<JPackerWord>() {
 
@@ -99,6 +102,10 @@ public final class JPackerWords {
                 return x.getIndex() - y.getIndex();
             }
         });
+
+        for(JPackerWord word : words){
+            System.out.println(word + ": "+word.getIndex() +" REP: "+word.getReplacement()+" CNT: "+word.getCount());
+        }
 
     }
 
