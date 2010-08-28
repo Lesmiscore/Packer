@@ -16,25 +16,24 @@ import java.util.regex.Matcher;
 
 public class StringEvaluator extends AbstractEvaluator implements Evaluator {
 
-	private String	replacement;
+    private String replacement;
 
-	public StringEvaluator(String replacement) {
-		this.replacement = replacement;
-	}
+    public StringEvaluator(String replacement) {
+        this.replacement = replacement;
+    }
 
-	/**
-	 * Replacement function for complicated lookups (e.g. Hello $3 $2)
-	 * 
-	 */
-	@Override
-	public String evaluate(Matcher matcher, int offset) {
-		int length = getJPattern().getLength();
-		String result = replacement;
-		while (length-- > 0) {
-			String mg = matcher.group(offset + length);
-			result = result.replace("$" + length, mg == null ? "" : mg);
-		}
-		return result;
-	}
-
+    /**
+     * Replacement function for complicated lookups (e.g. Hello $3 $2)
+     *
+     */
+    @Override
+    public String evaluate(Matcher matcher, int offset) {
+        int length = getJPattern().getLength();
+        String result = replacement;
+        while (length-- > 0) {
+            String mg = matcher.group(offset + length);
+            result = result.replace("$" + length, mg == null ? "" : mg);
+        }
+        return result;
+    }
 }

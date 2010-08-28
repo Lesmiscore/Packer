@@ -24,34 +24,34 @@ import com.jpacker.JPackerPattern;
  */
 public class DefaultReplacementStrategy implements ReplacementStrategy {
 
-	/**
-	 * Default replacement function. Called once for each match found
-	 * 
-	 * @param jpatterns
-	 *            A List<JPackerPattern> that contains all
-	 *            {@link JPackerPattern} objects that wrap expressions to be
-	 *            evaluated
-	 * @param matcher
-	 *            A {@link Matcher} object that corresponds to a match in the
-	 *            script
-	 */
-	public String replace(List<JPackerPattern> jpatterns, Matcher matcher) {
-		int i = 1;
-		// loop through the patterns
-		for (JPackerPattern jpattern : jpatterns) {
-			// do we have a result?
-			if (isMatch(matcher.group(i))) {
-				return jpattern.getEvaluator().evaluate(matcher, i);
-			} else { // skip over references to sub-expressions
-				i += jpattern.getLength();
-			}
-		}
-		return matcher.group(); // should never be hit, but you never know
-	}
+    /**
+     * Default replacement function. Called once for each match found
+     *
+     * @param jpatterns
+     *            A List<JPackerPattern> that contains all
+     *            {@link JPackerPattern} objects that wrap expressions to be
+     *            evaluated
+     * @param matcher
+     *            A {@link Matcher} object that corresponds to a match in the
+     *            script
+     */
+    @Override
+    public String replace(List<JPackerPattern> jpatterns, Matcher matcher) {
+        int i = 1;
+        // loop through the patterns
+        for (JPackerPattern jpattern : jpatterns) {
+            // do we have a result?
+            if (isMatch(matcher.group(i))) {
+                return jpattern.getEvaluator().evaluate(matcher, i);
+            } else { // skip over references to sub-expressions
+                i += jpattern.getLength();
+            }
+        }
+        return matcher.group(); // should never be hit, but you never know
+    }
 
-	// check that match is not an empty string
-	private boolean isMatch(String match) {
-		return match != null && !match.isEmpty();
-	}
-
+    // check that match is not an empty string
+    private boolean isMatch(String match) {
+        return match != null && !match.isEmpty();
+    }
 }

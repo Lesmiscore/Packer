@@ -33,37 +33,36 @@ import com.jpacker.strategies.DefaultReplacementStrategy;
  */
 public interface Evaluator {
 
-	/**
-	 * Sets the {@link JPackerPattern} object to use
-	 * 
-	 * @param jpattern
-	 *            The {@link JPackerPattern} object for the {@link Evaluator}
-	 *            implementations to use
-	 */
-	public void setJPattern(JPackerPattern jpattern);
+    /**
+     * Sets the {@link JPackerPattern} object to use
+     *
+     * @param jpattern
+     *            The {@link JPackerPattern} object for the {@link Evaluator}
+     *            implementations to use
+     */
+    public void setJPattern(JPackerPattern jpattern);
 
-	/**
-	 * Gets the {@link JPackerPattern} object
-	 * 
-	 * @return The {@link JPackerPattern} object if it has been set, null
-	 *         otherwise
-	 */
-	public JPackerPattern getJPattern();
+    /**
+     * Gets the {@link JPackerPattern} object
+     *
+     * @return The {@link JPackerPattern} object if it has been set, null
+     *         otherwise
+     */
+    public JPackerPattern getJPattern();
 
-	/**
-	 * Evaluates the string matched by the {@link Matcher} object and returns a
-	 * suitable replacement String.
-	 * 
-	 * @param matcher
-	 *            The {@link Matcher} object that contains a match (and its
-	 *            groups)
-	 * @param offset
-	 *            The offset in the String object returned by the
-	 *            {@link JPackerParser#getJPatterns()} method in the
-	 *            {@link JPackerParser} object
-	 * @return A replacement string (either text or group expressions, i.e.: $1)
-	 * @see DefaultReplacementStrategy
-	 */
-	public String evaluate(Matcher matcher, int offset);
-
+    /**
+     * Evaluates the string matched by the {@link Matcher} object and returns a
+     * suitable replacement String.
+     *
+     * @param matcher
+     *            The {@link Matcher} object that contains a match (and its
+     *            groups)
+     * @param offset
+     *            The offset in the String object returned by the
+     *            {@link JPackerParser#getJPatterns()} method in the
+     *            {@link JPackerParser} object
+     * @return A replacement string (either text or group expressions, i.e.: $1)
+     * @see DefaultReplacementStrategy
+     */
+    public String evaluate(Matcher matcher, int offset);
 }

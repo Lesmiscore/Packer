@@ -20,8 +20,8 @@ package com.jpacker.encoders;
  */
 public class NumericEncoder implements Encoder {
 
+    @Override
     public String encode(int code) {
         return String.valueOf(code);
     }
-
 }

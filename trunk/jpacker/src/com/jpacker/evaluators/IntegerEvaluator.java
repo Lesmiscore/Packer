@@ -23,22 +23,21 @@ import java.util.regex.Matcher;
  */
 public class IntegerEvaluator extends AbstractEvaluator implements Evaluator {
 
-	private int	replacement;
+    private int replacement;
 
-	/**
-	 * Constructor
-	 * 
-	 * @param replacement
-	 *            If replacement String is "$1" then 1 would be the replacement
-	 *            parameter
-	 */
-	public IntegerEvaluator(int replacement) {
-		this.replacement = replacement;
-	}
+    /**
+     * Constructor
+     *
+     * @param replacement
+     *            If replacement String is "$1" then 1 would be the replacement
+     *            parameter
+     */
+    public IntegerEvaluator(int replacement) {
+        this.replacement = replacement;
+    }
 
-	@Override
-	public String evaluate(Matcher matcher, int offset) {
-		return matcher.group(replacement + offset);
-	}
-
+    @Override
+    public String evaluate(Matcher matcher, int offset) {
+        return matcher.group(replacement + offset);
+    }
 }
