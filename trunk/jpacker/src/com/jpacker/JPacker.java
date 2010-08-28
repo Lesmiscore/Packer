@@ -96,10 +96,9 @@ public class JPacker {
 
             out.write(packed.replace("\n", System.getProperty("line.separator")));
             out.close();
-
             if (!quiet) {
                 long endTime = System.currentTimeMillis();
-                System.out.printf("\nReduced to %.2f%% of its original size in %.4f seconds.\n\n",
+                System.out.printf("Reduced to %.2f%% of its original size in %.4f seconds.\n",
                         ((double) packed.length() / (double) unpacked.length()) * 100,
                         (double) (endTime - startTime) / 1000);
             }
