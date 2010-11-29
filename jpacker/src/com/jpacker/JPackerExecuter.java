@@ -64,7 +64,7 @@ public class JPackerExecuter {
      */
     public String pack(String script, boolean minifyOnly, boolean shrinkVariables) {
         script += "\n";
-        script = minify(script);
+        script = minify(script);        
         if (!minifyOnly) {
             if (shrinkVariables) {
                 script = shrinkVariables(script);
@@ -79,7 +79,7 @@ public class JPackerExecuter {
     // zero encoding - just removal of whitespace and comments
     private String minify(String script) {
         JPackerParser parser = new JPackerParser();
-        DefaultReplacementStrategy defaultStrat = new DefaultReplacementStrategy();
+        ReplacementStrategy defaultStrat = new DefaultReplacementStrategy();
         // protect data
         parser = addDataRegEx(parser);
         script = parser.exec(script, defaultStrat);
@@ -107,13 +107,12 @@ public class JPackerExecuter {
         parser.replace("(" + COMMENT1 + ")\\n\\s*(" + REGEX + ")?", "\n$3");
         parser.replace("(" + COMMENT2 + ")\\s*(" + REGEX + ")?", " $3");
         parser.replace("([\\[\\(\\^=,{}:;&|!*?])\\s*(" + REGEX + ")", "$1$2");
-        // ([\\[ (\\^=,{}:;&|!*?])\\s*
         return parser;
     }
 
     private JPackerParser addCleanUpRegEx(JPackerParser parser) {
         parser.replace("\\(\\s*;\\s*;\\s*\\)", "(;;)");
-        parser.ignore("throw[^};]+[};]"); // safari 1.3 bug
+        parser.ignore("throw[};]+[};]"); // safari 1.3 bug
         parser.replace(";+\\s*([};])", "$1");
         parser.remove(";;[^\\n\\r]+[\\n\\r]");
         return parser;

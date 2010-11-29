@@ -57,7 +57,6 @@ public final class JPackerWords {
         }
         JPackerWord w = find(word);
         w.setCount(w.getCount() + 1);
-        System.out.println(word+ " CNT: "+w.getCount());
     }
 
     private void encode() {
@@ -102,11 +101,6 @@ public final class JPackerWords {
                 return x.getIndex() - y.getIndex();
             }
         });
-
-        for(JPackerWord word : words){
-            System.out.println(word + ": "+word.getIndex() +" REP: "+word.getReplacement()+" CNT: "+word.getCount());
-        }
-
     }
 
     /**
@@ -148,7 +142,7 @@ public final class JPackerWords {
         StringBuilder sb = new StringBuilder();
         for (JPackerWord word : words) {
             sb.append(word.getReplacement()).append('|');
-        }
+        }        
         sb.deleteCharAt(sb.length() - 1);
         return sb.toString();
     }
