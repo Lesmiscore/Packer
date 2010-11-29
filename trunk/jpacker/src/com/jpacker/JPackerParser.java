@@ -78,8 +78,7 @@ public class JPackerParser {
             return;
         }
         Evaluator evaluator;
-        // does the pattern deal with sub-expressions? and a simple lookup (e.g.
-        // $2)
+        // does the pattern deal with sub-expressions? and a simple lookup (e.g. $2)
         if (SUB_REPLACE.matcher(replacement).matches() && INDEXED.matcher(replacement).matches()) {
             evaluator = new IntegerEvaluator(Integer.parseInt(replacement.substring(1)));
         } else {

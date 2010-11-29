@@ -41,7 +41,7 @@ public class DefaultReplacementStrategy implements ReplacementStrategy {
         // loop through the patterns
         for (JPackerPattern jpattern : jpatterns) {
             // do we have a result?
-            if (isMatch(matcher.group(i))) {
+            if (isMatch(matcher.group(i))) {                
                 return jpattern.getEvaluator().evaluate(matcher, i);
             } else { // skip over references to sub-expressions
                 i += jpattern.getLength();

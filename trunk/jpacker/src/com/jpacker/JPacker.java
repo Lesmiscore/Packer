@@ -12,6 +12,7 @@
  */
 package com.jpacker;
 
+import com.jpacker.exceptions.EmptyFileException;
 import jargs.gnu.CmdLineParser;
 import jargs.gnu.CmdLineParser.IllegalOptionValueException;
 import jargs.gnu.CmdLineParser.Option;
@@ -69,6 +70,11 @@ public class JPacker {
             boolean quiet = parser.getOptionValue(quietOpt) != null;
             Integer base = (Integer) parser.getOptionValue(baseOpt);
             Integer columns = (Integer) parser.getOptionValue(columnsOpt);
+
+            if (parser.getRemainingArgs().length == 0) {
+                throw new FileNotFoundException("No input file was provided");
+            }
+
             String inputFilename = parser.getRemainingArgs()[0];
             String outputFilename = (String) parser.getOptionValue(outputFilenameOpt);
 
@@ -80,6 +86,9 @@ public class JPacker {
             }
             in = new BufferedReader(new FileReader(new File(inputFilename)));
             String unpacked = buildStringFromTextFile(in);
+            if (unpacked.isEmpty()) {
+                throw new EmptyFileException("The file is empty");
+            }
 
             String packed = executer.pack(unpacked, minify, shrinkVariables);
 
@@ -102,11 +111,6 @@ public class JPacker {
                         (double) (endTime - startTime) / 1000);
             }
 
-            BufferedReader in2 = new BufferedReader(new FileReader(new File("/home/poly/packer.txt")));
-            Writer out2 = new OutputStreamWriter(new FileOutputStream("/home/poly/packer2.txt"));
-            out2.write(wrapLines(buildStringFromTextFile(in2), columns));
-            out2.close();
-
         } catch (FileNotFoundException e) {
             System.out.println("File not found: " + e.getLocalizedMessage());
             System.exit(1);
@@ -116,7 +120,7 @@ public class JPacker {
         } catch (UnknownOptionException e) {
             printUsage();
             System.exit(1);
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getLocalizedMessage());
             System.exit(1);
         } finally {
